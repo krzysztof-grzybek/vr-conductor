@@ -1,0 +1,30 @@
+{
+  "name": "vr-director",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server",
+    "build": "NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krzysztof-grzybek/vr-director.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krzysztof-grzybek/vr-director/issues"
+  },
+  "homepage": "https://github.com/krzysztof-grzybek/vr-director#readme",
+  "devDependencies": {
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "aframe": "^0.8.2"
+  }
+}
