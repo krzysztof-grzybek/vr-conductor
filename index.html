@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Vr director</title>
+    <script src="dist/bundle.js"></script>
 </head>
-<body>
 
-<script src="dist/bundle.js"></script>
+<body>
+<a-scene avatar-recorder>
+    <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
+
+    <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
+
+    <a-entity id="violin" supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"></a-entity>
+    <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
+
+    <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true"></a-entity>
+</a-scene>
+
+
 </body>
 </html>
