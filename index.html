@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<a-scene avatar-recorder>
+<a-scene  avatar-replayer="loop: true; src:misc/capture.json">
     <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
 
     <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
@@ -16,6 +16,9 @@
     <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
 
     <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true"></a-entity>
+
+    <a-entity id="leftHand" vive-controls="left"  obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"></a-entity>
+    <a-entity id="rightHand" vive-controls="right"  obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"></a-entity>
 </a-scene>
 
 
