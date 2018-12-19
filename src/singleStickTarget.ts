@@ -1,27 +1,24 @@
-let targetsCounter = 0;
-
 AFRAME.registerComponent('single-stick-target', {
   schema: {
-    position: {
-      type: 'string',
-      default: '0 0 0',
+    items: {
+      type: 'array', // id: string, position: [x: number, y: number,z: number]
+      default: [],
     },
-    id: {
-      type: 'string',
-      default: ''
-    }
   },
   init: function() {
-    this.id = this.data.id;
-    this.setupPosition();
-    this.setupModel();
+    this.data.items.forEach(item => {
+      this.setupModel(item.id, item.position);
+    })
   },
-  setupPosition: function() {
-    this.el.setAttribute('position', this.data.position)
+  setupModel: function(id: string, position: [number, number, number]) {
+    const model = this.createModel();
+    model.position.set(...position);
+    this.el.setObject3D(id, model);
   },
-  setupModel: function() {
-    this.el.setObject3D(this.id, this.createSphere());
-    this.el.getObject3D(this.id).add(this.createInnerSphere());
+  createModel: function() {
+    const sphere = this.createSphere();
+    sphere.add(this.createInnerSphere());
+    return sphere;
   },
   createSphere: function() {
     const geometry = new THREE.SphereGeometry( 0.05, 36, 18 );

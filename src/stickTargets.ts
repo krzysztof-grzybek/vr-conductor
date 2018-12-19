@@ -1,6 +1,16 @@
 AFRAME.registerComponent('stick-targets', {
   init: function() {
-    this.el.setAttribute('single-stick-target', { position: '-0.107  0.625  -0.614', id: 'left' });
+    const items = [
+      {
+        position: [-0.1, 0, 0],
+        id: 'left'
+      },
+      {
+        position: [0.1, 0, 0],
+        id: 'right'
+      }
+    ];
+    this.el.setAttribute('single-stick-target', { items });
   }
 });
 

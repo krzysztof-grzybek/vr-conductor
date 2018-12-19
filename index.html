@@ -17,12 +17,27 @@
 
     <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true"></a-entity>
 
-    <a-entity stick-targets></a-entity>
+    <a-entity
+        stick-targets
+        hoverable
+        position="-0.107, 0.625, -0.614"
+    ></a-entity>
 
-    <a-entity id="leftHand" vive-controls="left"  obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"></a-entity>
-    <a-entity id="rightHand" vive-controls="right"  obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"></a-entity>
+    <a-entity
+        id="leftHand"
+        super-hands
+        hand-controls="left"
+        obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
+    ></a-entity>
+
+    <a-entity
+        id="rightHand"
+        super-hands
+        hand-controls="right"
+        obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
+    ></a-entity>
+
 </a-scene>
-
 
 </body>
 </html>
