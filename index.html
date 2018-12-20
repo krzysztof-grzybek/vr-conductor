@@ -15,24 +15,21 @@
     <a-entity id="violin" supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"></a-entity>
     <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
 
-    <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true"></a-entity>
+    <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true">
+        <a-entity stick-pointer></a-entity>
+    </a-entity>
 
-    <a-entity
-        stick-targets
-        hoverable
-        position="-0.107, 0.625, -0.614"
-    ></a-entity>
+    <a-entity stick-target position="-0.087, 0.625, -0.614"></a-entity>
+    <a-entity stick-target position="-0.217, 0.625, -0.614"></a-entity>
 
     <a-entity
         id="leftHand"
-        super-hands
         hand-controls="left"
         obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
     ></a-entity>
 
     <a-entity
         id="rightHand"
-        super-hands
         hand-controls="right"
         obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
     ></a-entity>

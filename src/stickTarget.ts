@@ -1,19 +1,10 @@
-AFRAME.registerComponent('single-stick-target', {
-  schema: {
-    items: {
-      type: 'array', // id: string, position: [x: number, y: number,z: number]
-      default: [],
-    },
-  },
+AFRAME.registerComponent('stick-target', {
   init: function() {
-    this.data.items.forEach(item => {
-      this.setupModel(item.id, item.position);
-    })
+      this.setupModel(this.data.id);
   },
-  setupModel: function(id: string, position: [number, number, number]) {
+  setupModel: function(id: string) {
     const model = this.createModel();
-    model.position.set(...position);
-    this.el.setObject3D(id, model);
+    this.el.setObject3D('mesh', model);
   },
   createModel: function() {
     const sphere = this.createSphere();
