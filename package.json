@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/krzysztof-grzybek/vr-director#readme",
   "devDependencies": {
+    "@types/aframe": "^0.8.0",
     "@types/node": "^10.12.15",
     "aframe-motion-capture-components": "^0.2.7",
     "cross-env": "^5.2.0",
@@ -25,8 +26,7 @@
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "@types/aframe": "^0.8.0"
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "aframe": "^0.8.2",

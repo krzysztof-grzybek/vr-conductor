@@ -4,3 +4,4 @@ require('aframe-supercraft-thing');
 require('aframe-motion-capture-components');
 
 require('./stickTarget');
+require('./collidable');
