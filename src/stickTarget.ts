@@ -1,13 +1,20 @@
-import { Component, registerComponent, THREE } from 'aframe';
+import { registerComponent, THREE } from 'aframe';
+import { ComponentDef } from './utils';
 
-interface StickTargetComponent extends Component {
+interface StickTargetComponent {
   setupModel: () => void;
   createModel: () => THREE.Mesh;
   createSphere: () => THREE.Mesh;
   createInnerSphere: () => THREE.Mesh;
 }
 
-const componentDef: ThisType<StickTargetComponent> = {
+const componentDef: ComponentDef<StickTargetComponent> = {
+  schema: {
+    name: {
+      type: 'string',
+      default: '',
+    }
+  },
   init: function() {
     this.setupModel();
   },

@@ -5,3 +5,5 @@ require('aframe-motion-capture-components');
 
 require('./stickTarget');
 require('./collidable');
+require('./conductor');
+require('./orchestra');

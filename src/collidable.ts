@@ -1,8 +1,15 @@
-import { Component, Entity, registerComponent, THREE } from 'aframe';
+import { DetailEvent, Entity, EntityEventMap, registerComponent, THREE } from 'aframe';
+import { ComponentDef } from './utils';
 
-// only with sphere mesh
+export type CollideEvent = DetailEvent<{ relatedTarget: Entity }>
 
-interface CollideComponent extends Component {
+declare module 'aframe' {
+  interface EntityEventMap {
+    "collide": CollideEvent;
+  }
+}
+
+interface CollideComponent {
   collided: Entity[];
   entities: Entity[];
 
@@ -13,7 +20,7 @@ interface CollideComponent extends Component {
   handleCollisionEnd: (e: Entity) => void;
 }
 
-const componentDef: ThisType<CollideComponent> = {
+const componentDef: ComponentDef<CollideComponent> = {
   schema: {
     ids: {
       type: 'array',
