@@ -7,3 +7,4 @@ require('./stickTarget');
 require('./collidable');
 require('./conductor');
 require('./orchestra');
+require('./stick');

@@ -30,12 +30,14 @@ const componentDef: ComponentDef<ConductorComponent> = {
     if (this.lastHitSide === null && targetSide === 'left') {
       this.conduct();
       this.lastHitSide = targetSide;
+      return;
     }
 
     // every next
     if (this.lastHitSide !== null && targetSide !== this.lastHitSide) {
       this.conduct();
       this.lastHitSide = targetSide;
+      return;
     }
   },
 

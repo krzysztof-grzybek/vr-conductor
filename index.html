@@ -16,9 +16,7 @@
     <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
 
     <a-entity conductor>
-        <a-entity id="stick" supercraft-thing="from: #environment; name: thing0; resetOrigin: true; ignorePosition: true">
-            <a-entity stick-pointer></a-entity>
-        </a-entity>
+        <a-entity stick></a-entity>
 
         <a-entity id="stick-target-left" stick-target="name: left" collidable position="-0.087, 0.625, -0.614"></a-entity>
         <a-entity id="stick-target-right" stick-target="name: right" collidable position="-0.217, 0.625, -0.614"></a-entity>
@@ -35,7 +33,8 @@
     <a-entity
         id="rightHand"
         hand-controls="right"
-        obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
+        collidable
+        stick
     ></a-entity>
 
 </a-scene>
