@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Vr director</title>
-    <script src="dist/bundle.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vr conductor</title>
+        <script src="dist/bundle.js"></script>
+    </head>
 
-<body>
-<a-scene  avatar-replayer="loop: true; src:misc/capture.json">
-    <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
+    <body>
+        <a-scene  avatar-replayer="loop: true; src:misc/capture.json">
+            <a-assets>
+                <a-asset-item id="sound" src="/misc/sound.mp3" response-type="arraybuffer"></a-asset-item>
+            </a-assets>
 
-    <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
 
-    <a-entity id="violin" supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"></a-entity>
-    <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
+            <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
 
-    <a-entity conductor>
-        <a-entity stick></a-entity>
+            <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
 
-        <a-entity id="stick-target-left" stick-target="name: left" collidable position="-0.087, 0.625, -0.614"></a-entity>
-        <a-entity id="stick-target-right" stick-target="name: right" collidable position="-0.217, 0.625, -0.614"></a-entity>
-    </a-entity>
+            <a-entity id="violin" supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"></a-entity>
+            <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
 
-    <a-entity orchestra></a-entity>
+            <a-entity conductor>
+                <a-entity stick></a-entity>
 
-    <a-entity
-        id="leftHand"
-        hand-controls="left"
-        obj-model="obj: https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj; mtl: https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl"
-    ></a-entity>
+                <a-entity id="stick-target-left" stick-target="name: left" collidable position="-0.217, 0.625, -0.614"></a-entity>
+                <a-entity id="stick-target-right" stick-target="name: right" collidable position="-0.087, 0.625, -0.614"></a-entity>
+            </a-entity>
 
-    <a-entity
-        id="rightHand"
-        hand-controls="right"
-        collidable
-        stick
-    ></a-entity>
+            <a-entity orchestra>
+                <a-entity music></a-entity>
+            </a-entity>
 
-</a-scene>
+            <a-entity
+                id="leftHand"
+                collidable
+                stick="hand: left"
+            ></a-entity>
 
-</body>
+            <a-entity
+                id="rightHand"
+                collidable
+                stick="hand: right"
+            ></a-entity>
+
+        </a-scene>
+
+    </body>
 </html>

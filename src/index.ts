@@ -8,3 +8,4 @@ require('./collidable');
 require('./conductor');
 require('./orchestra');
 require('./stick');
+require('./music');

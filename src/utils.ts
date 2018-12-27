@@ -1,3 +1,5 @@
 import { Component } from 'aframe';
 
-export type ComponentDef<T> = T & Partial<Component> & ThisType<T & Component>
+export type ComponentDef<T, D extends Object> = T & Partial<Component<D>> & ThisType<T & Component<D>>
+
+export type FullComponentDef<T> = T & Component;

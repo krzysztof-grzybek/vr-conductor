@@ -6,17 +6,18 @@ type targetSide = 'left' | 'right';
 
 interface ConductorComponent {
   lastHitSide: targetSide | null;
-  stickTargets: NodeListOf<Entity> | null,
+  stickTargets: Entity[],
   onStickTargetCollide: (target: CollideEvent) => void;
   conduct: () => void;
+  handleHighlights: (side: targetSide) => void;
 }
 
-const componentDef: ComponentDef<ConductorComponent> = {
+const componentDef: ComponentDef<ConductorComponent, {}> = {
   lastHitSide: null,
-  stickTargets: null,
+  stickTargets: [],
 
   init() {
-    this.stickTargets = this.el.querySelectorAll<Entity>('[stick-target]');
+    this.stickTargets = Array.from(this.el.querySelectorAll<Entity>('[stick-target]'));
 
     this.stickTargets.forEach((el: Entity) => {
       el.addEventListener('collide', this.onStickTargetCollide.bind(this));
@@ -24,25 +25,34 @@ const componentDef: ComponentDef<ConductorComponent> = {
   },
 
   onStickTargetCollide(e: CollideEvent) {
-    const targetSide = e.target.getAttribute('stick-target').name;
+    const stickTarget = e.target.components['stick-target'];
+    const targetSide = stickTarget.data.name;
 
-    // first
-    if (this.lastHitSide === null && targetSide === 'left') {
+    if (
+      (this.lastHitSide === null && targetSide === 'left') || // first
+      (this.lastHitSide !== null && targetSide !== this.lastHitSide) // every next
+    ) {
       this.conduct();
+      this.handleHighlights(targetSide);
       this.lastHitSide = targetSide;
-      return;
-    }
-
-    // every next
-    if (this.lastHitSide !== null && targetSide !== this.lastHitSide) {
-      this.conduct();
-      this.lastHitSide = targetSide;
-      return;
     }
   },
 
   conduct() {
     this.el.emit('conduct');
+  },
+
+  handleHighlights(sideToHighlight: targetSide) {
+    this.stickTargets.forEach(target => {
+      const stickTargetComponent = target.components['stick-target'];
+      const targetSide = stickTargetComponent.data.name;
+
+      if (targetSide === sideToHighlight) {
+        stickTargetComponent.highlightOn();
+      } else {
+        stickTargetComponent.highlightOff();
+      }
+    });
   }
 };
 

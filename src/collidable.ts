@@ -20,7 +20,7 @@ interface CollideComponent {
   handleCollisionEnd: (e: Entity) => void;
 }
 
-const componentDef: ComponentDef<CollideComponent> = {
+const componentDef: ComponentDef<CollideComponent, { ids: string[] }> = {
   schema: {
     ids: {
       type: 'array',

@@ -7,9 +7,9 @@ interface OrchestraComponent {
   setup: () => void;
 }
 
-const componentDef: ComponentDef<OrchestraComponent> = {
+const componentDef: ComponentDef<OrchestraComponent, { conductorSelector: string }> = {
   conductor: null,
-  data: {
+  schema: {
     conductorSelector: {
       type: 'string',
       default: ''
@@ -23,7 +23,7 @@ const componentDef: ComponentDef<OrchestraComponent> = {
   setup() {
     this.conductor = this.el.sceneEl!.querySelector('[conductor]') as Entity;
     this.conductor.addEventListener('conduct', () => {
-      console.log('play')
+      this.el.emit('play');
     });
   }
 };
