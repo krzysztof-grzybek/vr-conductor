@@ -1,6 +1,6 @@
 import { registerComponent, THREE } from 'aframe';
 import { ComponentDef } from './utils';
-import { Mesh, MeshBasicMaterial } from "three";
+import { Mesh, MeshBasicMaterial } from 'three';
 
 export interface StickTargetComponent {
   setupModel: () => void;

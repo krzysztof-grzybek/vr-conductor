@@ -1,15 +1,18 @@
 import { Entity, registerComponent } from 'aframe';
 import { ComponentDef } from './utils';
+import * as song from '../misc/song.json';
 
 
 interface MusicComponent {
   orchestra: Entity | null;
   nextNote: () => void;
   setup: () => void;
+  currentNoteIndex: number;
 }
 
 const componentDef: ComponentDef<MusicComponent, {}> = {
   orchestra: null,
+  currentNoteIndex: 0,
 
   init() {
     this.el.sceneEl!.addEventListener('loaded', this.setup.bind(this));
@@ -23,9 +26,13 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
   },
 
   nextNote() {
-    const soundComponent = this.el.components.sound;
-    soundComponent.stopSound();
-    soundComponent.playSound();
+    if (song[this.currentNoteIndex]) {
+      const soundComponent = this.el.components.sound;
+      this.el.setAttribute('sound', { src: `#${song[this.currentNoteIndex]}` });
+      soundComponent.stopSound();
+      soundComponent.playSound();
+      this.currentNoteIndex++;
+    }
   }
 };
 
