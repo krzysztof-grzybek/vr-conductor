@@ -22,8 +22,13 @@
 
             <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
 
-            <a-entity id="violin" supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"></a-entity>
-            <a-entity id="bow" supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"></a-entity>
+            <a-entity
+                    id="violin"
+                    supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"
+                    position="0 -1.5 -0.5"
+            >
+            </a-entity>
+
 
             <a-entity conductor>
                 <a-entity stick></a-entity>
@@ -34,6 +39,16 @@
 
             <a-entity orchestra>
                 <a-entity music></a-entity>
+
+                <a-entity
+                    arm
+                    supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"
+                    position="0 -1.5 -0.5"
+                    animation__down="property: position; dur: 1000; to: 0 -1.7 -0.5; startEvents: down-bow;"
+                    animation__up="property: position; dur: 1000; to: 0 -1.3 -0.5; startEvents: up-bow;"
+                >
+                </a-entity>
+
             </a-entity>
 
             <a-entity
