@@ -20,12 +20,16 @@
 
             <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
 
-            <a-entity id="environment" supercraft-loader="name: military-trade" visible="false"></a-entity>
+            <a-entity id="environment" supercraft-loader="name: exciting-sense" visible="false"></a-entity>
 
+
+            <!--player model with violin-->
             <a-entity
-                    id="violin"
                     supercraft-thing="from: #environment; name: thing1; resetOrigin: false; ignorePosition: false"
-                    position="0 -1.5 -0.5"
+            >
+            </a-entity>
+            <a-entity
+                    supercraft-thing="from: #environment; name: thing3; resetOrigin: false; ignorePosition: false"
             >
             </a-entity>
 
@@ -40,13 +44,27 @@
             <a-entity orchestra>
                 <a-entity music></a-entity>
 
-                <a-entity
-                    arm
-                    supercraft-thing="from: #environment; name: thing2; resetOrigin: false; ignorePosition: false"
-                    position="0 -1.5 -0.5"
-                    animation__down="property: position; dur: 1000; to: 0 -1.7 -0.5; startEvents: down-bow;"
-                    animation__up="property: position; dur: 1000; to: 0 -1.3 -0.5; startEvents: up-bow;"
-                >
+                <!--arm-->
+
+                    <a-entity
+                        arm
+                        data-arm-main
+                        supercraft-thing="from: #environment; name: thing4; resetOrigin: false; ignorePosition: false"
+                    >
+                    </a-entity>
+                    <a-entity
+                        arm
+                        data-arm-part
+                        supercraft-thing="from: #environment; name: thing5; resetOrigin: true; ignorePosition: false"
+                        animation__down="property: rotation; dur: 200; to: 0 -5 0; startEvents: down-bow;"
+                        animation__up="property: rotation; dur: 200; to: 0 0 0; startEvents: up-bow;"
+                    >
+                    </a-entity>
+                    <a-entity
+                        data-arm-part
+                        supercraft-thing="from: #environment; name: thing2; resetOrigin: true; ignorePosition: true"
+                    >
+
                 </a-entity>
 
             </a-entity>
