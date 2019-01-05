@@ -7,7 +7,8 @@
     </head>
 
     <body>
-        <a-scene  avatar-replayer="loop: true; src:misc/capture.json">
+        <!--<a-scene  avatar-replayer="loop: true; src:misc/capture.json">-->
+        <a-scene>
             <a-assets>
                 <a-asset-item id="C5" src="/misc/sounds-lib/C5.mp3" response-type="arraybuffer"></a-asset-item>
                 <a-asset-item id="D5" src="/misc/sounds-lib/D5.mp3" response-type="arraybuffer"></a-asset-item>
@@ -37,8 +38,8 @@
             <a-entity conductor>
                 <a-entity stick></a-entity>
 
-                <a-entity id="stick-target-left" stick-target="name: left" collidable position="-0.217, 0.625, -0.614"></a-entity>
-                <a-entity id="stick-target-right" stick-target="name: right" collidable position="-0.087, 0.625, -0.614"></a-entity>
+                <a-entity id="stick-target-left" stick-target="name: left" collidable position="-0.087, 1.185, -0.614"></a-entity>
+                <a-entity id="stick-target-right" stick-target="name: right" collidable position="0.133, 1.185, -0.614"></a-entity>
             </a-entity>
 
             <a-entity orchestra>
@@ -49,20 +50,21 @@
                     <a-entity
                         arm
                         data-arm-main
-                        supercraft-thing="from: #environment; name: thing4; resetOrigin: false; ignorePosition: false"
+                        supercraft-thing="from: #environment; name: thing4; resetOrigin: true; ignorePosition: false"
                     >
                     </a-entity>
                     <a-entity
-                        arm
                         data-arm-part
                         supercraft-thing="from: #environment; name: thing5; resetOrigin: true; ignorePosition: false"
-                        animation__down="property: rotation; dur: 200; to: 0 -5 0; startEvents: down-bow;"
+                        animation__down="property: rotation; dur: 200; to: 6 -5 0; startEvents: down-bow;"
                         animation__up="property: rotation; dur: 200; to: 0 0 0; startEvents: up-bow;"
                     >
                     </a-entity>
                     <a-entity
                         data-arm-part
-                        supercraft-thing="from: #environment; name: thing2; resetOrigin: true; ignorePosition: true"
+                        supercraft-thing="from: #environment; name: thing2; resetOrigin: true; ignorePosition: false"
+                        animation__down="property: rotation; dur: 200; to: 0 8 0; startEvents: down-bow;"
+                        animation__up="property: rotation; dur: 200; to: 0 0 0; startEvents: up-bow;"
                     >
 
                 </a-entity>

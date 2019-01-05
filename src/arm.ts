@@ -5,15 +5,17 @@ type bowDirection = 'down' | 'up';
 
 interface MusicComponent {
   orchestra: Entity | null;
+  armParts: Entity[];
   nextBowDirection: bowDirection;
   setup: () => void;
   nextMove: () => void;
-  groupArm: () => void;
+  buildArm: () => void;
 }
 
 const componentDef: ComponentDef<MusicComponent, {}> = {
   nextBowDirection: 'down',
   orchestra: null,
+  armParts: [],
 
   init() {
     this.el.sceneEl!.addEventListener('loaded', this.setup.bind(this));
@@ -21,16 +23,22 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
 
   setup() {
     this.orchestra = this.el.sceneEl!.querySelector('[orchestra]') as Entity;
+    this.armParts = Array.from(this.orchestra!.querySelectorAll('[data-arm-part]') as NodeListOf<Entity>);
     this.orchestra.addEventListener('play', this.nextMove.bind(this));
 
     this.el.setAttribute('sound', { src: '#sound' });
-    if (this.el.hasAttribute('data-arm-main')) {
-      this.groupArm();
-    }
+
+    // last part loaded
+    this.armParts[2].addEventListener('supercraftthingloaded', () => {
+      this.buildArm();
+    });
   },
 
   nextMove() {
     this.el.emit(`${this.nextBowDirection}-bow`);
+    this.armParts.forEach(part => {
+      part.emit(`${this.nextBowDirection}-bow`);
+    });
 
     if (this.nextBowDirection === 'down') {
       this.nextBowDirection = 'up';
@@ -39,20 +47,33 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
     }
   },
 
-  groupArm() {
-  // TODO: handle this properely
-    const parts = this.orchestra!.querySelectorAll('[data-arm-part]') as NodeListOf<Entity>;
+  buildArm() {
     let prevGroup = this.el.object3D;
-    Array.from(parts).forEach((part, i) => {
+    let originVector: THREE.Vector3;
 
-      if (i ==1) {
-        part.object3D.position.set(0.25, 0.15, -0.08);
-        prevGroup.add(part.object3D);
-        prevGroup = part.object3D;
-      } else if (i === 0) {
-        prevGroup.add(part.object3D);
-        prevGroup = part.object3D;
+
+    this.armParts.forEach((part, i) => {
+
+      if (i === 0 ) {
+         originVector = new THREE.Vector3(0.15, 0, 0);
+      } else if (i === 1) {
+         originVector = new THREE.Vector3(0, -0.09, -0.08);
       }
+
+      const wrapper = new THREE.Group();
+
+      prevGroup.updateMatrixWorld(true);
+      part.object3D.applyMatrix( new THREE.Matrix4().getInverse( prevGroup.matrixWorld ) );
+      wrapper.position.copy(part.object3D.position);
+      part.object3D.position.set(0, 0, 0);
+      wrapper.add(part.object3D);
+
+      part.object3D.position.add(originVector);
+      wrapper.position.sub(originVector);
+
+      part.object3D = wrapper;
+      prevGroup.add(wrapper);
+      prevGroup = wrapper;
     });
   }
 };
