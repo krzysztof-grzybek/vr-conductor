@@ -28,10 +28,10 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
 
     this.el.setAttribute('sound', { src: '#sound' });
 
-    // last part loaded
-    this.armParts[2].addEventListener('supercraftthingloaded', () => {
+    // TODO: change to superthingloaded event
+    setTimeout(() => {
       this.buildArm();
-    });
+    }, 1000);
   },
 
   nextMove() {
@@ -55,7 +55,7 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
     this.armParts.forEach((part, i) => {
 
       if (i === 0 ) {
-         originVector = new THREE.Vector3(0.15, 0, 0);
+         originVector = new THREE.Vector3(0.15, 0, 0.1);
       } else if (i === 1) {
          originVector = new THREE.Vector3(0, -0.09, -0.08);
       }
@@ -72,6 +72,7 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
       wrapper.position.sub(originVector);
 
       part.object3D = wrapper;
+      // wrapper.add(part.object3D);
       prevGroup.add(wrapper);
       prevGroup = wrapper;
     });

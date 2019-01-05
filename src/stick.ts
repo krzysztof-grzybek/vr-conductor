@@ -35,6 +35,7 @@ const componentDef: ComponentDef<StickComponent, { conductorSelector: string, ha
 
   appendPointer() {
     const pointer = this.createPointer();
+    pointer.visible = false;
     this.el.setObject3D('mesh', pointer);
   },
 
@@ -44,6 +45,12 @@ const componentDef: ComponentDef<StickComponent, { conductorSelector: string, ha
     const mesh = new THREE.Mesh(innerGeometry, innerMaterial);
     mesh.rotation.set(THREE.Math.degToRad(90), 0, 0);
     mesh.position.z = 0.05;
+
+    const coneGeometry = new THREE.ConeGeometry( 0.0051, 0.05, 6 );
+    const coneMesh = new THREE.Mesh(coneGeometry, innerMaterial);
+    coneMesh.rotation.set( 0, 0 ,THREE.Math.degToRad(180), );
+    coneMesh.position.y = -0.075;
+    mesh.add(coneMesh);
     return mesh;
   },
 

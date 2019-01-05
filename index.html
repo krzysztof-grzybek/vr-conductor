@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Vr conductor</title>
         <script src="dist/bundle.js"></script>
+        <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     </head>
 
     <body>
@@ -19,9 +20,9 @@
             </a-assets>
 
 
-            <a-entity environment="preset: forest; groundColor: #445; grid: none;"></a-entity>
+            <a-entity environment="preset: forest; grid: none;"></a-entity>
 
-            <a-entity id="environment" supercraft-loader="name: exciting-sense" visible="false"></a-entity>
+            <a-entity id="environment" supercraft-loader="name: exciting-sense; includeEnvironment: false" visible="false"></a-entity>
 
 
             <!--player model with violin-->

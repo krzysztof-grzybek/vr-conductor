@@ -12,7 +12,7 @@ export interface StickTargetComponent {
   setColor: (color: string) => void;
 }
 
-const BASIC_COLOR = '#1086ff';
+const BASIC_COLOR = '#888';
 
 const componentDef: ComponentDef<StickTargetComponent, { name: string }> = {
   schema: {
@@ -39,7 +39,7 @@ const componentDef: ComponentDef<StickTargetComponent, { name: string }> = {
 
   createSphere() {
     const geometry = new THREE.SphereGeometry(0.05, 36, 18);
-    const material = new THREE.MeshBasicMaterial({ color: '#0475fe', transparent: true, opacity: 0.5 });
+    const material = new THREE.MeshBasicMaterial({ color: '#0475fe', transparent: true, opacity: 0.1 });
     return new THREE.Mesh(geometry, material);
   },
 
