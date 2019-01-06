@@ -40,17 +40,25 @@ const componentDef: ComponentDef<StickComponent, { conductorSelector: string, ha
   },
 
   createBody() {
-    const innerGeometry = new THREE.CylinderGeometry(0.005, 0.005, 0.1, 15, 1);
+    const innerGeometry = new THREE.CylinderGeometry(0.005, 0.005, 0.15, 15, 1);
     const innerMaterial = new THREE.MeshBasicMaterial({ color: '#fff' });
     const mesh = new THREE.Mesh(innerGeometry, innerMaterial);
     mesh.rotation.set(THREE.Math.degToRad(90), 0, 0);
     mesh.position.z = 0.05;
 
-    const coneGeometry = new THREE.ConeGeometry( 0.0051, 0.05, 6 );
-    const coneMesh = new THREE.Mesh(coneGeometry, innerMaterial);
-    coneMesh.rotation.set( 0, 0 ,THREE.Math.degToRad(180), );
-    coneMesh.position.y = -0.075;
-    mesh.add(coneMesh);
+    const tipGeometry = new THREE.ConeGeometry( 0.0051, 0.05, 6 );
+    const tipMesh = new THREE.Mesh(tipGeometry, innerMaterial);
+    tipMesh.rotation.set( 0, 0 ,THREE.Math.degToRad(180), );
+    tipMesh.position.y = -0.1;
+    mesh.add(tipMesh);
+
+    const woodGeometry = new THREE.CylinderGeometry( 0.0065, 0.01, 0.03 );
+    const woodMaterial = new THREE.MeshBasicMaterial({ color: '#823100' });
+    const woodMesh = new THREE.Mesh(woodGeometry, woodMaterial);
+    woodMesh.rotation.set( 0, 0 ,THREE.Math.degToRad(180), );
+    woodMesh.position.y = 0.075;
+    mesh.add(woodMesh);
+
     return mesh;
   },
 
