@@ -65,7 +65,9 @@ const componentDef: ComponentDef<StickComponent, { conductorSelector: string, ha
   createPointer() {
     const innerGeometry = new THREE.DodecahedronGeometry( 0.02, 0 );
     const innerMaterial = new THREE.MeshBasicMaterial({ color: '#1086ff', transparent: true, opacity: 0.4 });
-    return new THREE.Mesh(innerGeometry, innerMaterial);
+    const mesh = new THREE.Mesh(innerGeometry, innerMaterial);
+    mesh.position.z = -0.06;
+    return mesh;
   }
 };
 

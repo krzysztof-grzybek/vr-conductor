@@ -69,7 +69,11 @@ const componentDef: ComponentDef<CollideComponent, { ids: string[] }> = {
     secondGeometry.computeBoundingSphere();
 
     const maxDistance = firstGeometry.boundingSphere.radius + secondGeometry.boundingSphere.radius;
-    const realDistance = this.el.object3D.position.distanceTo(second.object3D.position);
+    const firstMeshWorldPos = new THREE.Vector3();
+    const secondMeshWorldPos = new THREE.Vector3();
+    firstMesh.getWorldPosition(firstMeshWorldPos);
+    secondMesh.getWorldPosition(secondMeshWorldPos);
+    const realDistance = firstMeshWorldPos.distanceTo(secondMeshWorldPos);
 
     return realDistance < maxDistance;
   },

@@ -28,7 +28,7 @@ const componentDef: ComponentDef<MusicComponent, {}> = {
   nextNote() {
     if (song[this.currentNoteIndex]) {
       const soundComponent = this.el.components.sound;
-      this.el.setAttribute('sound', { src: `#${song[this.currentNoteIndex]}` });
+      this.el.setAttribute('sound', { src: `#${song[this.currentNoteIndex]}`, distanceModel: 'linear' });
       soundComponent.stopSound();
       soundComponent.playSound();
       this.currentNoteIndex++;
