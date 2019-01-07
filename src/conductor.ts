@@ -19,9 +19,12 @@ const componentDef: ComponentDef<ConductorComponent, {}> = {
   init() {
     this.stickTargets = Array.from(this.el.querySelectorAll<Entity>('[stick-target]'));
 
-    this.stickTargets.forEach((el: Entity) => {
-      el.addEventListener('collide', this.onStickTargetCollide.bind(this));
-    });
+    // TODO: find out why it's needed and remove it (probably collision is fired before setting translations)
+    setTimeout(() => {
+      this.stickTargets.forEach((el: Entity) => {
+        el.addEventListener('collide', this.onStickTargetCollide.bind(this));
+      });
+    }, 100); 
   },
 
   onStickTargetCollide(e: CollideEvent) {
